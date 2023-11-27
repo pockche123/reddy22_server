@@ -30,10 +30,11 @@ const showMaterialsNotInBin = async (req, res) => {
 };
 
 const showMaterialById = async (req, res) => {
-  const { material_id } = req.params;
+  const materialId = parseInt(req.params.id);
+  console.log(materialId);
 
   try {
-    const material = await Material.getMaterialById(parseInt(material_id));
+    const material = await Material.getMaterialById(materialId);
 
     if (!material) {
       return res.status(404).json({ error: 'Material not found' });
