@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:14
     container_name: reddy_22_server
     ports:
       - 5432:5432
