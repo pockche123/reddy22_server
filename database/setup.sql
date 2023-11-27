@@ -51,6 +51,7 @@ CREATE TABLE materials (
     bin_id INT NOT NULL,
     PRIMARY KEY (material_id),
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
+    PRIMARY KEY (material_id)
 );
 
 CREATE TABLE scores (
