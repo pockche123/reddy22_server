@@ -1,11 +1,11 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:14
     container_name: reddy_22_server
     ports:
       - 5432:5432
-    environment: 
+    environment:
       - POSTGRES_DB=today
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
