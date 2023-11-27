@@ -48,6 +48,7 @@ CREATE TABLE materials (
     name VARCHAR (50) NOT NULL,
     material_image VARCHAR (1000) NOT NULL,
     bin_id INT NOT NULL,
+    PRIMARY KEY (material_id)
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
 );
 
@@ -56,7 +57,7 @@ CREATE TABLE scores (
     user_id INT NOT NULL,
     category_id INT NOT NULL,
     value INT NOT NULL,
-    PRIMARY KEY (token_id),
+    PRIMARY KEY (score_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
