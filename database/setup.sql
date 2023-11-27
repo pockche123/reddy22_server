@@ -1,13 +1,16 @@
-DROP TABLE IF EXISTS entries;
+DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS tokens;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS materials; 
-DROP TABLE IF EXISTS bins;
+DROP TABLE IF EXISTS bins CASCADE;
 
 CREATE TABLE users (
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(30) UNIQUE NOT NULL,
     password CHAR(60) NOT NULL,
+    address VARCHAR(255),
+    isAdmin BOOLEAN DEFAULT FALSE;
+    isCouncilMember BOOLEAN DEFAULT FALSE;
     PRIMARY KEY (user_id)
 );
 
@@ -17,6 +20,8 @@ CREATE TABLE posts (
     title VARCHAR (100) NOT NULL,
     content VARCHAR (500) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    isCommunity BOOLEAN DEFAULT FALSE,
+    enrolls DEFAULT 0,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
