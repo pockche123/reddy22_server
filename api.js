@@ -4,6 +4,8 @@ const logger = require('morgan');
 
 const postRouter = require('./routers/postRouter');
 const userRouter = require('./routers/userRouter');
+const binRouter = require('./routers/binRouter');
+const materialRouter = require('./routers/materialRouter');
 
 const api = express();
 
@@ -29,5 +31,7 @@ api.get('/', (req, res) => {
 
 api.use('/posts', postRouter);
 api.use('/users', userRouter);
+api.use('/bins', binRouter)
+api.use('/materials', materialRouter)
 
 module.exports = api;
