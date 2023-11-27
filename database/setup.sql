@@ -60,7 +60,7 @@ CREATE TABLE scores (
     value INT NOT NULL,
     PRIMARY KEY (score_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
     ('Recycling collection', 'blue', 'https://www.warwickdc.gov.uk/images/Recycing_bin_1.jpg', 'Your 240 litre recycling bin will be collected every fortnight - check the collection calendar for your collection day.'),
