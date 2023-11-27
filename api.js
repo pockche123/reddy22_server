@@ -31,7 +31,7 @@ api.get('/', (req, res) => {
 
 api.use('/posts', postRouter);
 api.use('/users', userRouter);
-api.use('/bins', binRouter)
-api.use('/materials', materialRouter)
+api.use('/bins', binRouter);
+api.use('/materials', materialRouter);
 
 module.exports = api;
