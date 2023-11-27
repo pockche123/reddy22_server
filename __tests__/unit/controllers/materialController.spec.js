@@ -100,4 +100,36 @@ describe('material controller tests', () => {
         
     })
 
+    describe('show material by id', () => {
+          let testMaterial, mockReq
+        beforeEach(() => {
+            testMaterial = { material_id: 3, name: "paper", material_image: "image_link", bin_id: 2 }
+            mockReq = { params: {id: 3 } }
+        })
+
+           test('return a material with a 200 status code', async () => {
+            jest.spyOn(Material, 'getMaterialById')
+                .mockResolvedValue(new Material(testMaterial))
+            
+            await materialController.showMaterialById(mockReq, mockRes)
+            expect(Material.getMaterialById).toHaveBeenCalledWith(3);
+            expect(Material.getMaterialById).toHaveBeenCalledTimes(1)
+            expect(mockStatus).toHaveBeenCalledWith(200)
+            expect(mockJson).toHaveBeenCalledWith(testMaterial);
+
+           })
+        
+            test('sends an error upon fail', async () => {
+             jest.spyOn(Material, 'getMaterialById')
+                .mockRejectedValue(new Error('Material not found'))
+
+            await materialController.showMaterialById(mockReq, mockRes)
+            expect(Material.getMaterialById).toHaveBeenCalledTimes(1)
+            expect(mockStatus).toHaveBeenCalledWith(500)
+        })
+
+
+
+    })
+
 })
