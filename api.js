@@ -2,15 +2,18 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 
-// const entryRouter = require('./routers/entry');
-// const userRouter = require('./routers/user');
+const binRoutes = require('./router/BinRouter')
 
 const api = express();
+
 
 // middlewares
 api.use(cors());
 api.use(express.json());
 api.use(logger('dev'));
+
+
+api.use('/bins', binRoutes)
 
 api.get('/', (req, res) => {
   res.status(200).json({
