@@ -27,6 +27,7 @@ api.get('/', (req, res) => {
       'GET  /users/logout',
       'GET  /bins',
       'GET  /materials',
+      'GET  /materials/:id',
       'GET  /materials/byBin/:id',
       'GET  /materials/notInBin/:id'
     ]
