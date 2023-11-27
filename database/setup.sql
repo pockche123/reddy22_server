@@ -48,8 +48,18 @@ CREATE TABLE materials (
     name VARCHAR (50) NOT NULL,
     material_image VARCHAR (1000) NOT NULL,
     bin_id INT NOT NULL,
+    PRIMARY KEY (material_id)
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
 );
+
+CREATE TABLE scores (
+    score_id INT GENERATED ALWAYS AS IDENTITY,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    value INT NOT NULL,
+    PRIMARY KEY (score_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
     ('Recycling collection', 'blue', 'https://www.warwickdc.gov.uk/images/Recycing_bin_1.jpg', 'Your 240 litre recycling bin will be collected every fortnight - check the collection calendar for your collection day.'),
