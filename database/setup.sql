@@ -49,6 +49,7 @@ CREATE TABLE materials (
     material_image VARCHAR (1000) NOT NULL,
     bin_id INT NOT NULL,
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
+    PRIMARY KEY (material_id)
 );
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
