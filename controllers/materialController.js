@@ -30,7 +30,24 @@ const showMaterialsNotInBin = async (req, res) => {
     }
 };
 
+const showMaterialById = async (req, res) => {
+  const { material_id } = req.params;
+
+  try {
+    const material = await Material.getMaterialById(material_id);
+
+    if (!material) {
+      return res.status(404).json({ error: 'Material not found' });
+    }
+
+    return res.status(200).json(material);
+  } catch (error) {
+    console.error('Error retrieving material:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
-module.exports = {index, showMaterialsByBinId, showMaterialsNotInBin}
+
+module.exports = {index, showMaterialsByBinId, showMaterialsNotInBin, showMaterialById}
 
