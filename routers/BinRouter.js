@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express');
 
 const binController = require('../controllers/binController');
 
-router.get('/', binController.index);
+const binRouter = Router();
 
-module.exports = router;
+binRouter.get('/', binController.index);
+
+module.exports = binRouter;
