@@ -53,6 +53,28 @@ class Material {
       throw error;
     }
   }
+  
+  static async showMaterialById(material_id) {
+    try {
+      const result = await db.query(
+        'SELECT * FROM materials WHERE material_id = $1',
+        [material_id]
+      );
+
+      if (result.rows.length === 0) {
+        return null; 
+      }
+
+      return new Material(result.rows[0]);
+    } catch (error) {
+      console.error('Error fetching material:', error);
+      throw error;
+    }
+  }
+
 }
+
+
+
 
 module.exports = Material;
