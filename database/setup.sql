@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS materials; 
 DROP TABLE IF EXISTS bins CASCADE;
 
+
 CREATE TABLE users (
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(30) UNIQUE NOT NULL,
@@ -69,11 +70,28 @@ INSERT INTO bins (bin_type, color, bin_image, info) VALUES
 
 
 INSERT INTO materials (name, material_image, bin_id) VALUES
-    ('Material A', 'https://example.com/materialA.jpg', 1),
-    ('Material B', 'https://example.com/materialB.jpg', 2),
-    ('Material C', 'https://example.com/materialC.jpg', 1),
-    ('Material D', 'https://example.com/materialD.jpg', 3),
-    ('Material E', 'https://example.com/materialE.jpg', 2),
-    ('Material F', 'https://example.com/materialF.jpg', 3),
-    ('Material G', 'https://example.com/materialG.jpg', 1),
-    ('Material H', 'https://example.com/materialH.jpg', 2);
+    ('paper', 'https://www.pixartprinting.co.uk/blog/wp-content/uploads/2021/03/Carta_Riciclata.jpg', 1),
+    ('card and cardboard', 'https://miro.medium.com/v2/resize:fit:1200/1*KR7l3KcOvAp50OAilLMNUQ.jpeg', 1),
+    ('glass bottles and jars', 'https://www.friendsofglass.com/wp-content/uploads/Recycling_1.jpg', 1),
+    ('metal tins and cans', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1FOk_sKTl2XOwV9Ib6MIUYfIoR3B7B8jovg', 1),
+    ('Aerosols', 'https://i0.wp.com/www.circularonline.co.uk/wp-content/uploads/2022/09/aerosal.jpg?w=1000&ssl=1', 1),
+    ('clean foil', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7DNJqnx0aydjEKMIB4BWqjMk0nvHkaPzklQ', 1),
+    ('plastic bottles', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFbKVX7ZxdPViTtbtZBoBBTU-FAIr7EntG0A', 1),
+    ('food and drink cartons', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkLodtFDnso4aTNEvxNUwJpRdoeDzjc7MJ_A', 1),
+    ('textiles', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFR3SpL3luB3OUI3ypJpbdrvbAcEUIwXwFRQ.jpg', 2),
+    ('household batteries', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk1mSngStXhZgxnPb4_L9n9kBZeCWgpn52kQ', 2),
+    ('small electrical items', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZCjRhvXOdSnJs3gN1xlqmrPyrY-fdtj_0VQ', 2),
+    ('Nappies', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVQ3d_8w5TI1HJ15wT5kiCBJQiwYrAyNr85w', 2),
+    ('Black bags and general rubbish', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-8maCWn7BmehwdFqY6Nw3SZhxQT33JPL8Q', 2),
+    ('Plastic film from food containers', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSboBIHRDsfI3EQVHdckwjkS8Q67woezbd0DQ&usqp=CAU', 2),
+    ('grass cuttings', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqqlUGZrFZClNrblCg7RjIWG5tQZfLBU8IRA', 3),
+    ('Hedge clippings', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCKymboZR9-c06CP6OUpm1csfK3aerTDo8rA', 3),
+    ('leaves and bark', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREmLkjUztiEnNMUKBJwWXklhxARdeUgIghmw', 3),
+    ('vase plants', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlj_u33OluQW4W7FRiCoVScmnlAdsJfaK6oQ', 3),
+    ('Dairy products', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgzqMNiusW-ctMRWim8cAvEwAS5CuJZd0Izg', 4),
+    ('Bread and pastries', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ65EA-i-7zdL2qMUzPzgPqP0xE16ElsuPkXg', 4),
+    ('Meat and bones', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9C5yXhF1fVWJs9T3Gj7xyUCJozO6XfluqGQ', 4),
+    ('Tea and coffee grounds', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvm0V7XjahZzBvFR2objfN5x5ClRH4b22gUQ', 4),
+    ('Fruit and vegetables', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbS5PCRWW4QBu-ClXBOsMJfnM0hnG9GIA8YQ', 4),
+    ('Fish', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiGIrTIGdTJVXOYIW1Gmm_CmBHV_DIf2f5aQ', 4),
+    ('Rice, pasta and beans', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBjXRaS5sLUdBuyVYlNoATkm4xSD1wSh7S0w', 4);
