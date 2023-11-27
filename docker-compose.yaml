@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres:14
+    image: postgres
     container_name: reddy_22_server
     ports:
       - 5432:5432
@@ -11,6 +11,7 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - dbdata:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d/:ro
 volumes:
   dbdata:
     name: reddy_22_database
