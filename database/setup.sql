@@ -9,8 +9,8 @@ CREATE TABLE users (
     username VARCHAR(30) UNIQUE NOT NULL,
     password CHAR(60) NOT NULL,
     address VARCHAR(255),
-    isAdmin BOOLEAN DEFAULT FALSE;
-    isCouncilMember BOOLEAN DEFAULT FALSE;
+    isAdmin BOOLEAN DEFAULT FALSE,
+    isCouncilMember BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id)
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE posts (
     content VARCHAR (500) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     isCommunity BOOLEAN DEFAULT FALSE,
-    enrolls DEFAULT 0,
+    enrolls INT DEFAULT 0,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
