@@ -9,37 +9,33 @@ class Post {
   }
 
   static async getAll() {
-    const response = await db.query('SELECT * FROM post');
-    return response.rows.map((p) => new Post(p));
+    const resp = await db.query('SELECT * FROM posts');
+    return resp.rows.map((p) => new Post(p));
   }
 
   static async getOneById(id) {
-    const response = await db.query('SELECT * FROM post WHERE post_id = $1', [
-      id
-    ]);
-    if (response.rows.length != 1) {
-      throw new Error('Unable to locate post.');
-    }
+    const resp = await db.query('SELECT * FROM posts WHERE post_id = $1', [id]);
+    if (resp.rows.length !== 1) throw new Error('Unable to locate post.');
     return new Post(response.rows[0]);
   }
 
   static async create(data) {
     const { title, content, user_id } = data;
-    let response = await db.query(
-      'INSERT INTO post (title, content, user_id) VALUES ($1, $2, $3) RETURNING post_id;',
+    let resp = await db.query(
+      'INSERT INTO posts (title, content, user_id) VALUES ($1, $2, $3) RETURNING post_id;',
       [title, content, user_id]
     );
-    const newId = response.rows[0].post_id;
+    const newId = resp.rows[0].post_id;
     const newPost = await Post.getOneById(newId);
     return newPost;
   }
 
   async destroy() {
-    let response = await db.query(
-      'DELETE FROM post WHERE post_id = $1 RETURNING *;',
+    let resp = await db.query(
+      'DELETE FROM posts WHERE post_id = $1 RETURNING *;',
       [this.id]
     );
-    return new Post(response.rows[0]);
+    return new Post(resp.rows[0]);
   }
 }
 
