@@ -12,6 +12,7 @@ const mockStatus = jest.fn((code) => ({
 const mockRes = { status: mockStatus };
 
 describe('material controller tests', () => {
+
   beforeEach(() => jest.clearAllMocks());
   afterAll(() => jest.resetAllMocks());
 
@@ -117,3 +118,4 @@ describe('material controller tests', () => {
     });
   });
 });
+
