@@ -8,7 +8,7 @@
     "start": "run-p -r setup-db & node index.js",
     "setup-db": "node ./database/setup.js",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
-    "integrationtests": "jest --testPathPattern=/integration/ --watchAll --detectOpenHandles --runInBand --verbose",
+    "integrationTests": "jest --testPathPattern=/integration/ --watchAll --detectOpenHandles --runInBand --verbose",
     "coverage": "jest --coverage --testPathPattern=/unit/"
   },
   "keywords": [],
@@ -33,5 +33,5 @@
     "testPathIgnorePatterns": [
       "./__tests__/integration/config.js"
     ]
-}
+  }
 }
