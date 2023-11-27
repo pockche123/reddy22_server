@@ -1,4 +1,4 @@
-const Bin = require('../model/Bin');
+const Bin = require('../models/Bin');
 
 const index = async (req, res) => {
   try {
