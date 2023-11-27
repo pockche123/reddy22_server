@@ -11,13 +11,13 @@ CREATE TABLE users (
     PRIMARY KEY (user_id)
 );
 
-CREATE TABLE entries (
-    entry_id INT GENERATED ALWAYS AS IDENTITY,
+CREATE TABLE posts (
+    post_id INT GENERATED ALWAYS AS IDENTITY,
     user_id INT NOT NULL,
     title VARCHAR (100) NOT NULL,
     content VARCHAR (500) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (entry_id),
+    PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
