@@ -1,13 +1,17 @@
-DROP TABLE IF EXISTS entries;
+DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS tokens;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS materials; 
-DROP TABLE IF EXISTS bins;
+DROP TABLE IF EXISTS bins CASCADE;
+
 
 CREATE TABLE users (
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(30) UNIQUE NOT NULL,
     password CHAR(60) NOT NULL,
+    address VARCHAR(255),
+    isAdmin BOOLEAN DEFAULT FALSE,
+    isCouncilMember BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id)
 );
 
@@ -17,6 +21,8 @@ CREATE TABLE posts (
     title VARCHAR (100) NOT NULL,
     content VARCHAR (500) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    isCommunity BOOLEAN DEFAULT FALSE,
+    enrolls INT DEFAULT 0,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -43,8 +49,18 @@ CREATE TABLE materials (
     name VARCHAR (50) NOT NULL,
     material_image VARCHAR (1000) NOT NULL,
     bin_id INT NOT NULL,
+    PRIMARY KEY (material_id)
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
 );
+
+CREATE TABLE scores (
+    score_id INT GENERATED ALWAYS AS IDENTITY,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    value INT NOT NULL,
+    PRIMARY KEY (score_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
     ('Recycling collection', 'blue', 'https://www.warwickdc.gov.uk/images/Recycing_bin_1.jpg', 'Your 240 litre recycling bin will be collected every fortnight - check the collection calendar for your collection day.'),
@@ -79,6 +95,3 @@ INSERT INTO materials (name, material_image, bin_id) VALUES
     ('Fruit and vegetables', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbS5PCRWW4QBu-ClXBOsMJfnM0hnG9GIA8YQ', 4),
     ('Fish', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiGIrTIGdTJVXOYIW1Gmm_CmBHV_DIf2f5aQ', 4),
     ('Rice, pasta and beans', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBjXRaS5sLUdBuyVYlNoATkm4xSD1wSh7S0w', 4);
-
-
-

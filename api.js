@@ -2,12 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 
-// const entryRouter = require('./routers/entry');
-// const userRouter = require('./routers/user');
+const postRouter = require('./routers/postRouter');
+const userRouter = require('./routers/userRouter');
+const binRouter = require('./routers/binsRouter');
+const materialRouter = require('./routers/materialRouter');
 
 const api = express();
 
-// middlewares
 api.use(cors());
 api.use(express.json());
 api.use(logger('dev'));
@@ -15,12 +16,12 @@ api.use(logger('dev'));
 api.get('/', (req, res) => {
   res.status(200).json({
     name: 'reddy_22 API',
-    description: 'Create vivid snapshots of your memories.',
+    description: 'TBC',
     endpoints: [
-      'GET  /entries',
-      'GET  /entries/:id',
-      'POST  /entries',
-      'DELETE  /entries/:id',
+      'GET  /posts',
+      'GET  /posts/:id',
+      'POST  /posts',
+      'DELETE  /posts/:id',
       'POST  /users/login',
       'POST  /users/register',
       'GET  /users/logout'
@@ -28,7 +29,9 @@ api.get('/', (req, res) => {
   });
 });
 
-// api.use('/entries', entryRouter);
-// api.use('/users', userRouter);
+api.use('/posts', postRouter);
+api.use('/users', userRouter);
+api.use('/bins', binRouter);
+api.use('/materials', materialRouter);
 
 module.exports = api;
