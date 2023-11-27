@@ -49,7 +49,7 @@ CREATE TABLE materials (
     name VARCHAR (50) NOT NULL,
     material_image VARCHAR (1000) NOT NULL,
     bin_id INT NOT NULL,
-    PRIMARY KEY (material_id)
+    PRIMARY KEY (material_id),
     FOREIGN KEY (bin_id) REFERENCES bins(bin_id)
 );
 
