@@ -4,7 +4,7 @@ const logger = require('morgan');
 
 const postRouter = require('./routers/postRouter');
 const userRouter = require('./routers/userRouter');
-const binRouter = require('./routers/binRouter');
+const binRouter = require('./routers/binsRouter');
 const materialRouter = require('./routers/materialRouter');
 
 const api = express();
