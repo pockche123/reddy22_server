@@ -115,7 +115,6 @@ describe('User', () => {
                     }
                 ]
         };
-
             jest.spyOn(db, 'query').mockResolvedValueOnce(newUser)
 
             const users = await User.create(newUser)
