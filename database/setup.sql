@@ -77,7 +77,7 @@ INSERT INTO materials (name, material_image, bin_id) VALUES
     ('clean foil', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7DNJqnx0aydjEKMIB4BWqjMk0nvHkaPzklQ', 1),
     ('plastic bottles', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFbKVX7ZxdPViTtbtZBoBBTU-FAIr7EntG0A', 1),
     ('food and drink cartons', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkLodtFDnso4aTNEvxNUwJpRdoeDzjc7MJ_A', 1),
-    ('textiles', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFR3SpL3luB3OUI3ypJpbdrvbAcEUIwXwFRQ.jpg', 2),
+    ('textiles', 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_in/topics/tax/2021/ey-pli-scheme-for-the-textile-industry.jpeg', 2),
     ('household batteries', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk1mSngStXhZgxnPb4_L9n9kBZeCWgpn52kQ', 2),
     ('small electrical items', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZCjRhvXOdSnJs3gN1xlqmrPyrY-fdtj_0VQ', 2),
     ('Nappies', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVQ3d_8w5TI1HJ15wT5kiCBJQiwYrAyNr85w', 2),
