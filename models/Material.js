@@ -1,4 +1,4 @@
-const db = require("../database/connect");
+const db = require('../database/connect');
 
 class Material {
   constructor({ material_id, name, material_image, bin_id }) {
@@ -11,13 +11,13 @@ class Material {
   static getAll() {
     return new Promise(async (resolve, reject) => {
       try {
-        const materialsData = await db.query("SELECT * FROM materials");
+        const materialsData = await db.query('SELECT * FROM materials');
         const materials = materialsData.rows.map(
           (material) => new Material(material)
         );
         resolve(materials);
       } catch (error) {
-        reject("error retrieving bins");
+        reject('error retrieving bins');
       }
     });
   }
@@ -25,7 +25,7 @@ class Material {
   static async getMaterialsByBinId(id) {
     try {
       const result = await db.query(
-        "SELECT * FROM materials WHERE bin_id = $1",
+        'SELECT * FROM materials WHERE bin_id = $1',
         [id]
       );
 
@@ -33,7 +33,7 @@ class Material {
 
       return materials;
     } catch (error) {
-      console.error("Error fetching materials:", error);
+      console.error('Error fetching materials:', error);
       throw error;
     }
   }
@@ -41,7 +41,7 @@ class Material {
   static async getMaterialsNotInBin(id) {
     try {
       const result = await db.query(
-        "SELECT * FROM materials WHERE bin_id <> $1 ORDER BY RANDOM() LIMIT 4",
+        'SELECT * FROM materials WHERE bin_id <> $1 ORDER BY RANDOM() LIMIT 4',
         [id]
       );
 
@@ -49,32 +49,23 @@ class Material {
 
       return materials;
     } catch (error) {
-      console.error("Error fetching materials:", error);
-      throw error;
-    }
-  }
-  
-  static async showMaterialById(material_id) {
-    try {
-      const result = await db.query(
-        'SELECT * FROM materials WHERE material_id = $1',
-        [material_id]
-      );
-
-      if (result.rows.length === 0) {
-        return null; 
-      }
-
-      return new Material(result.rows[0]);
-    } catch (error) {
-      console.error('Error fetching material:', error);
+      console.error('Error fetching materials:', error);
       throw error;
     }
   }
 
+  static async getMaterialById(material_id) {
+    const result = await db.query(
+      'SELECT * FROM materials WHERE material_id = $1',
+      [material_id]
+    );
+
+    if (result.rows.length !== 1) {
+      throw new Error('Unable to locate material.');
+    }
+
+    return new Material(result.rows[0]);
+  }
 }
-
-
-
 
 module.exports = Material;
