@@ -100,4 +100,42 @@ describe('User', () => {
     })
 
 
+    describe('create', () => {
+        it('creates a new user given username and password', async () => {
+            // Arrange
+            const newUser = {
+                rows: [
+                    {
+                        user_id: 1,
+                        username: "AlexTest3",
+                        password: "jkl",
+                        address: "The World",
+                        is_admin: true,
+                        isCouncilMember: false
+                    }
+                ]
+        };
+
+            jest.spyOn(db, 'query').mockResolvedValueOnce(newUser)
+
+            const users = await User.create(newUser)
+            // Assert
+            expect(users[0]).toHaveProperty('password')
+            expect(users[0]).toHaveProperty('username')
+        })
+
+        it('handles errors gracefully', async () => {
+            // Arrange
+            const username = "AlexTest"
+            const errorMessage = 'Error creating user'
+            jest.spyOn(db, 'query').mockRejectedValueOnce(new Error(errorMessage))
+
+            // Act and Assert
+            await expect(User.create(username)).rejects.toThrow(
+                errorMessage
+            )
+        })
+    })
+
+
 })
