@@ -5,7 +5,7 @@ const User = require('../models/User');
 const index = async (req, res) => {
   try {
     const posts = await Post.getAll();
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -28,7 +28,7 @@ const show = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const post = await Post.getOneById(id);
-    res.json(post);
+    res.status(200).json(post);
   } catch (e) {
     res.status(404).json({ error: e.message });
   }

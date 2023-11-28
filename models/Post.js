@@ -2,7 +2,7 @@ const db = require('../database/connect');
 
 class Post {
   constructor({ post_id, user_id, title, content }) {
-    this.id = post_id;
+    this.post_id = post_id;
     this.user_id = user_id;
     this.title = title;
     this.content = content;
