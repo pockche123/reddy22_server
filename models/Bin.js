@@ -23,12 +23,9 @@ class Bin {
 
   
   static async findById(id) {
-    const result = await db.query(
-      'SELECT * FROM bins WHERE bins = $1',
-      [id]
-    );
+    const result = await db.query('SELECT * FROM bins WHERE bins = $1', [id]);
 
-    if (result.rows.length !== 1) {
+    if (!result.rows.length) {
       throw new Error('Unable to locate bin.');
     }
 
