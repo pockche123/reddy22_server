@@ -24,7 +24,7 @@ class Bin {
   
   static async findById(id) {
     const result = await db.query(
-      'SELECT * FROM bins WHERE bins = $1',
+      'SELECT * FROM bins WHERE bin_id = $1',
       [id]
     );
 
