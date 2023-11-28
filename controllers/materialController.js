@@ -1,5 +1,4 @@
-const Material = require('../models/Material')
-
+const Material = require('../models/Material');
 
 const index = async (req, res) => {
   try {
@@ -11,30 +10,31 @@ const index = async (req, res) => {
 };
 
 const showMaterialsByBinId = async (req, res) => {
-    const binId = parseInt(req.params.id);
-    try {
-        const materials = await Material.getMaterialsByBinId(binId);
-        res.status(200).json(materials);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  const binId = parseInt(req.params.id);
+  try {
+    const materials = await Material.getMaterialsByBinId(binId);
+    res.status(200).json(materials);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 const showMaterialsNotInBin = async (req, res) => {
-    const binId = parseInt(req.params.id);
-    try {
-        const materials = await Material.getMaterialsNotInBin(binId);
-        res.status(200).json(materials);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  const binId = parseInt(req.params.id);
+  try {
+    const materials = await Material.getMaterialsNotInBin(binId);
+    res.status(200).json(materials);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 const showMaterialById = async (req, res) => {
-  const { material_id } = req.params;
+  const materialId = parseInt(req.params.id);
+  console.log(materialId);
 
   try {
-    const material = await Material.getMaterialById(material_id);
+    const material = await Material.getMaterialById(materialId);
 
     if (!material) {
       return res.status(404).json({ error: 'Material not found' });
@@ -47,7 +47,9 @@ const showMaterialById = async (req, res) => {
   }
 };
 
-
-
-module.exports = {index, showMaterialsByBinId, showMaterialsNotInBin, showMaterialById}
-
+module.exports = {
+  index,
+  showMaterialsByBinId,
+  showMaterialsNotInBin,
+  showMaterialById
+};
