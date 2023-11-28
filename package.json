@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "nodemon -L index.js",
     "start": "run-p -r setup-db & node index.js",
     "setup-db": "node ./database/setup.js",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
