@@ -11,18 +11,13 @@ const index = async (req, res) => {
 };
 
 const show = async (req, res) => {
-  const id = parseInt(req.params.id);
 
   try {
+      const id = parseInt(req.params.id);
     const bin = await Bin.findById(id);
-
-    if (!bin) {
-      return res.status(404).json({ error: 'bin not found' });
-    }
     return res.status(200).json(bin);
   } catch (error) {
-    console.error('Error retrieving bin:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    res.status(404).send({error: error.message})
   }
 };
 
