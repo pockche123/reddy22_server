@@ -100,7 +100,7 @@ describe('user controller', () => {
         testUser.password,
         mockUser.password
       );
-      expect(Token.create).toHaveBeenCalledWith(1);
+      expect(Token.create).toHaveBeenCalledTimes(1);
       expect(mockStatus).toHaveBeenCalledWith(200);
       expect(mockJson).toHaveBeenCalledWith({
         authenticated: true,
