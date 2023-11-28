@@ -11,31 +11,32 @@ class Token {
 
   static async create(user_id) {
     const token = uuidv4();
-    const resp = await db.query(
+    const response = await db.query(
       'INSERT INTO tokens (user_id, token) VALUES ($1, $2) RETURNING token_id;',
       [user_id, token]
     );
-    const newId = resp.rows[0].token_id;
+    const newId = response.rows[0].token_id;
     const newToken = await Token.getOneById(newId);
     return newToken;
   }
 
   static async getOneById(id) {
-    const resp = await db.query('SELECT * FROM tokens WHERE token_id = $1', [
-      id
-    ]);
-    if (resp.rows.length !== 1) {
+    const response = await db.query(
+      'SELECT * FROM tokens WHERE token_id = $1',
+      [id]
+    );
+    if (response.rows.length != 1) {
       throw new Error('Unable to locate token.');
     } else {
-      return new Token(resp.rows[0]);
+      return new Token(response.rows[0]);
     }
   }
 
   static async getOneByToken(token) {
-    const resp = await db.query('SELECT * FROM tokens WHERE token = $1', [
+    const response = await db.query('SELECT * FROM tokens WHERE token = $1', [
       token
     ]);
-    if (resp.rows.length !== 1) {
+    if (response.rows.length != 1) {
       throw new Error('Unable to locate token.');
     } else {
       return new Token(response.rows[0]);
@@ -43,11 +44,11 @@ class Token {
   }
 
   async destroy() {
-    let resp = await db.query(
+    let response = await db.query(
       'DELETE FROM tokens WHERE token_id = $1 RETURNING *;',
       [this.token_id]
     );
-    return new Token(resp.rows[0]);
+    return new Token(response.rows[0]);
   }
 }
 
