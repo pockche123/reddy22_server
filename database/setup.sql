@@ -62,8 +62,8 @@ CREATE TABLE scores (
 );
 
 INSERT INTO users (username, password, isAdmin, isCouncilMember) VALUES
-    ('admin', 'admin', TRUE, FALSE)
-    ('ceo', 'ceo', FALSE, TRUE)
+    ('admin', 'admin', TRUE, FALSE),
+    ('ceo', 'ceo', FALSE, TRUE);
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
     ('Recycling collection', 'blue', 'https://www.warwickdc.gov.uk/images/Recycing_bin_1.jpg', 'Your 240 litre recycling bin will be collected every fortnight - check the collection calendar for your collection day.'),
