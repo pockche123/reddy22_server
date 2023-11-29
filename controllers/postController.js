@@ -11,6 +11,15 @@ const index = async (req, res) => {
   }
 };
 
+const indexCommunity = async (req, res) => {
+  try {
+    const posts = await Post.getAllCommunity();
+    res.status(200).json(posts);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
 const create = async (req, res) => {
   try {
     const data = req.body;
@@ -58,6 +67,7 @@ const destroy = async (req, res) => {
 
 module.exports = {
   index,
+  indexCommunity,
   create,
   show,
   destroy

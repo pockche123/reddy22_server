@@ -1,20 +1,19 @@
 const db = require('../database/connect');
 
 class User {
-  constructor({ user_id, username, password, is_admin }) {
+  constructor({ user_id, username, password, is_admin, is_council_member }) {
     this.id = user_id;
     this.username = username;
     this.password = password;
     this.isAdmin = is_admin;
+    this.isCouncilMember = is_council_member;
   }
 
   static getAll() {
     return new Promise(async (resolve, reject) => {
       try {
         const usersData = await db.query('SELECT * FROM users');
-        const users = usersData.rows.map(
-          (user) => new User(user)
-        );
+        const users = usersData.rows.map((user) => new User(user));
         resolve(users);
       } catch (error) {
         reject('error retrieving users');
@@ -54,10 +53,10 @@ class User {
   }
 
   static async create(data) {
-    const { username, password, isAdmin } = data;
+    const { username, password, isAdmin, isCouncilMember } = data;
     let response = await db.query(
-      'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING user_id;',
-      [username, password]
+      'INSERT INTO users (username, password, isAdmin, isCouncilMember) VALUES ($1, $2) RETURNING user_id;',
+      [username, password, isAdmin, isCouncilMember]
     );
     const newId = response.rows[0].user_id;
     const newUser = await User.getOneById(newId);
