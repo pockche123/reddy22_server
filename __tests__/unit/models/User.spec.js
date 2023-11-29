@@ -36,7 +36,7 @@ describe('User', () => {
         expect(User).toBeDefined()
     })
 
-    describe('getAll', () => {
+    describe('getAllIds', () => {
         it('resolves with Users on successful', async () => {
             //act
             jest.spyOn(db, 'query').mockResolvedValueOnce(mockData)
