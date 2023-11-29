@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<coverage generated="1701253098689" clover="3.2.0">
+  <project timestamp="1701253098689" name="All files">
+    <metrics statements="223" coveredstatements="216" conditionals="18" coveredconditionals="16" methods="46" coveredmethods="46" elements="287" coveredelements="278" complexity="0" loc="223" ncloc="223" packages="3" files="10" classes="10"/>
+=======
 <coverage generated="1701257914147" clover="3.2.0">
   <project timestamp="1701257914147" name="All files">
     <metrics statements="237" coveredstatements="216" conditionals="24" coveredconditionals="20" methods="47" coveredmethods="44" elements="308" coveredelements="280" complexity="0" loc="237" ncloc="237" packages="3" files="10" classes="10"/>
+>>>>>>> 6fe8dd2581102f5fad6856dd48811497649fbccb
     <package name="controllers">
       <metrics statements="115" coveredstatements="101" conditionals="8" coveredconditionals="6" methods="14" coveredmethods="12"/>
       <file name="binController.js" path="C:\Users\Warden\LFA\lap2\project_2\reddy22_server\controllers\binController.js">
@@ -144,25 +150,39 @@
       </file>
     </package>
     <package name="models">
+<<<<<<< HEAD
+      <metrics statements="115" coveredstatements="112" conditionals="10" coveredconditionals="10" methods="34" coveredmethods="34"/>
+      <file name="Bin.js" path="C:\Users\Snj_C\LFA\lap2\Lap2_Project\reddy22_server\models\Bin.js">
+        <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+=======
       <metrics statements="117" coveredstatements="110" conditionals="16" coveredconditionals="14" methods="33" coveredmethods="32"/>
       <file name="Bin.js" path="C:\Users\Warden\LFA\lap2\project_2\reddy22_server\models\Bin.js">
         <metrics statements="17" coveredstatements="12" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="4"/>
+>>>>>>> 6fe8dd2581102f5fad6856dd48811497649fbccb
         <line num="1" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
+<<<<<<< HEAD
+        <line num="19" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+=======
         <line num="19" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="28" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
+>>>>>>> 6fe8dd2581102f5fad6856dd48811497649fbccb
         <line num="35" count="2" type="stmt"/>
       </file>
       <file name="Material.js" path="C:\Users\Warden\LFA\lap2\project_2\reddy22_server\models\Material.js">
