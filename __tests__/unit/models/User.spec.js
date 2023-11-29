@@ -126,9 +126,6 @@ describe('User', () => {
           })
     })
 
-
-
-
     describe('getOneByUsername', () => {
         it('resolves with users for a given ID on success', async () => {
             let testUser = {
@@ -162,7 +159,6 @@ describe('User', () => {
           })
     })
 
-
     describe('create', () => {
         it('creates a new user given username and password', async () => {
            const testUser = {
@@ -173,7 +169,6 @@ describe('User', () => {
                 is_admin: true,
                 isCouncilMember: false
             }
-
             const testUser2 = {
                 user_id: 2,
                 username: "AlexTest2",
@@ -185,7 +180,6 @@ describe('User', () => {
 
             jest.spyOn(db, 'query').mockResolvedValueOnce({ rows:[testUser]
              })
-            
             jest.spyOn(db, 'query').mockResolvedValueOnce({
                 rows: [new User({ user_id: 2, ...testUser2 })],
               })
@@ -196,7 +190,6 @@ describe('User', () => {
          })
     
         it('should throw an Error on db query error', async () => {
-    
             try {
                 await User.create({ username: "AlexTest", password: "jkl"})
             } catch (error) {
@@ -204,8 +197,6 @@ describe('User', () => {
             }
         })
         })
-
-
 
 
 })
