@@ -43,6 +43,17 @@ const show = async (req, res) => {
   }
 };
 
+const updateCommunity = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.getOneById(parseInt(id));
+    const result = await post.updateCommunity(req.body);
+    res.status(200).json(result);
+  } catch (e) {
+    res.status(404).json({ error: e.message });
+  }
+};
+
 const destroy = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -72,5 +83,6 @@ module.exports = {
   indexCommunity,
   create,
   show,
+  updateCommunity,
   destroy
 };

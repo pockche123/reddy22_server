@@ -7,6 +7,7 @@ const postRouter = Router();
 
 postRouter.get('/', authenticator, postController.index);
 postRouter.get('/community', authenticator, postController.indexCommunity);
+postRouter.patch('/:id', postController.updateCommunity);
 postRouter.post('/', postController.create);
 postRouter.get('/:id', postController.show);
 postRouter.delete('/:id', postController.destroy);

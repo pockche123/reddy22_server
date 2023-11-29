@@ -54,14 +54,6 @@ class User {
 
   static async create(data) {
     const { username, password, isAdmin, isCouncilMember } = data;
-    // if (isAdmin && isCouncilMember) {
-    //   isAdmin = true;
-    //   isCouncilMember = true;
-    // } else {
-    //   isAdmin = false;
-    //   isCouncilMember = false;
-    // }
-
     let response = await db.query(
       'INSERT INTO users (username, password, isAdmin, isCouncilMember) VALUES ($1, $2, $3, $4) RETURNING user_id;',
       [username, password, isAdmin, isCouncilMember]
