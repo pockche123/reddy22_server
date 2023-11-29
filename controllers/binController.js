@@ -10,4 +10,15 @@ const index = async (req, res) => {
   }
 };
 
-module.exports = { index };
+const show = async (req, res) => {
+
+  try {
+      const id = parseInt(req.params.id);
+    const bin = await Bin.findById(id);
+    return res.status(200).json(bin);
+  } catch (error) {
+    res.status(404).send({error: error.message})
+  }
+};
+
+module.exports = { index, show };
