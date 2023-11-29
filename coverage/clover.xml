@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1701261869172" clover="3.2.0">
-  <project timestamp="1701261869172" name="All files">
-    <metrics statements="241" coveredstatements="230" conditionals="24" coveredconditionals="22" methods="47" coveredmethods="46" elements="312" coveredelements="298" complexity="0" loc="241" ncloc="241" packages="3" files="10" classes="10"/>
+<coverage generated="1701262231852" clover="3.2.0">
+  <project timestamp="1701262231853" name="All files">
+    <metrics statements="241" coveredstatements="235" conditionals="24" coveredconditionals="22" methods="47" coveredmethods="47" elements="312" coveredelements="304" complexity="0" loc="241" ncloc="241" packages="3" files="10" classes="10"/>
     <package name="controllers">
-      <metrics statements="119" coveredstatements="110" conditionals="8" coveredconditionals="6" methods="14" coveredmethods="13"/>
+      <metrics statements="119" coveredstatements="115" conditionals="8" coveredconditionals="6" methods="14" coveredmethods="14"/>
       <file name="binController.js" path="C:\Users\Snj_C\LFA\lap2\Lap2_Project\reddy22_server\controllers\binController.js">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -92,7 +92,7 @@
         <line num="59" count="1" type="stmt"/>
       </file>
       <file name="userController.js" path="C:\Users\Snj_C\LFA\lap2\Lap2_Project\reddy22_server\controllers\userController.js">
-        <metrics statements="41" coveredstatements="34" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+        <metrics statements="41" coveredstatements="39" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -117,11 +117,11 @@
         <line num="37" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
