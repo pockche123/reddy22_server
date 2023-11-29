@@ -41,6 +41,16 @@ const login = async (req, res) => {
   }
 };
 
+const show = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const user = await User.getUsernameById(id);
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(404).json({ error: e.message });
+  }
+};
+
 const logout = async (req, res) => {
   try {
     const userToken = req.headers['authorization'];
@@ -56,5 +66,6 @@ const logout = async (req, res) => {
 module.exports = {
   register,
   login,
+  show,
   logout
 };
