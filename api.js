@@ -24,6 +24,7 @@ api.get('/', (req, res) => {
       'DELETE  /posts/:id',
       'POST  /users/login',
       'POST  /users/register',
+      'GET /users/:id',
       'GET  /users/logout',
       'GET  /bins',
       'GET  /materials',
