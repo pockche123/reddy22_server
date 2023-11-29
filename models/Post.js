@@ -1,15 +1,16 @@
 const db = require('../database/connect');
 
 class Post {
-  constructor({ post_id, user_id, title, content }) {
+  constructor({ post_id, user_id, title, content, date }) {
     this.id = post_id;
     this.user_id = user_id;
     this.title = title;
     this.content = content;
+    this.date = date;
   }
 
   static async getAll() {
-    const response = await db.query('SELECT * FROM posts');
+    const response = await db.query('SELECT * FROM posts ORDER BY date DESC');
     return response.rows.map((p) => new Post(p));
   }
 
