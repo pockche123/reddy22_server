@@ -62,8 +62,8 @@ CREATE TABLE scores (
 );
 
 INSERT INTO users (username, password, isAdmin, isCouncilMember) VALUES
-    ('admin', 'admin', TRUE, FALSE),
-    ('ceo', 'ceo', FALSE, TRUE);
+    ('admin', '$2a$12$gvn051S4MU72NJ.Q4tRBN.qZx81SKnmnKQPZCYJbyyiXBnNdwV6iG', TRUE, FALSE),
+    ('ceo', '$2a$12$BwcsgMrHBmsRyjiWwqr0MuZhJy1QiwpQK5x.DSHvakMiJQX9bSGfS', FALSE, TRUE);
 
 INSERT INTO bins (bin_type, color, bin_image, info) VALUES
     ('Recycling collection', 'blue', 'https://www.warwickdc.gov.uk/images/Recycing_bin_1.jpg', 'Your 240 litre recycling bin will be collected every fortnight - check the collection calendar for your collection day.'),
