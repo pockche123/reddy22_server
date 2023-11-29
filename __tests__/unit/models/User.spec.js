@@ -36,16 +36,26 @@ describe('User', () => {
         expect(User).toBeDefined()
     })
 
-    describe('getAllIds', () => {
+    describe('getAll', () => {
         it('resolves with Users on successful', async () => {
-            //act
+         
             jest.spyOn(db, 'query').mockResolvedValueOnce(mockData)
             const Users = await User.getAll()
-            //assert
             expect(Users).toHaveLength(2)
-            //verify
             expect(Users[0]).toHaveProperty('username')
         })
+
+        it('should throw an Error on db query error', async () => {
+            jest.spyOn(db, 'query')
+              .mockResolvedValueOnce({ rows: [] })
+      
+            try {
+              await User.getAll()
+            } catch (err) {
+              expect(err).toBeDefined()
+              expect(err.message).toBe("No users available.")
+            }
+          })
     })
 
     
@@ -106,12 +116,12 @@ describe('User', () => {
             const newUser = {
                 rows: [
                     {
-                        // user_id: 1,
+                        user_id: 1,
                         username: "AlexTest3",
-                        password: "jkl"
-                        // address: "The World",
-                        // is_admin: true,
-                        // isCouncilMember: false
+                        password: "jkl",
+                        address: "The World",
+                        is_admin: true,
+                        isCouncilMember: false
                     }
                 ]
         };

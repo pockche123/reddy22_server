@@ -8,7 +8,7 @@ class User {
     this.isAdmin = is_admin;
   }
 
-  static getAllIds() {
+  static getAll() {
     return new Promise(async (resolve, reject) => {
       try {
         const usersData = await db.query('SELECT * FROM users');
