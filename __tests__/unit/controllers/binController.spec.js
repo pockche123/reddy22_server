@@ -46,4 +46,33 @@ describe('bin controller tests', () => {
       });
     });
   });
+
+  describe('show', () => {
+    it('should return a Bin with a status code 200', async () => {
+      const testBin = { id: 1, name: 'Test Bin' };
+      const mockReq = { params: { id: '1' } };
+
+      jest.spyOn(Bin, 'findById').mockResolvedValue(testBin);
+
+      await binController.show(mockReq, mockRes);
+
+      expect(Bin.findById).toHaveBeenCalledWith(1);
+      expect(mockStatus).toHaveBeenCalledWith(200);
+      expect(mockJson).toHaveBeenCalledWith(testBin);
+      expect(mockEnd).not.toHaveBeenCalled();
+    });
+
+    it('sends an error when failing to return a Bin', async () => {
+      const mockReq = { params: { id: '1' } };
+
+      jest
+        .spyOn(Bin, 'findById')
+        .mockRejectedValue(new Error('Bin not found'));
+
+      await binController.show(mockReq, mockRes);
+      expect(Bin.findById).toHaveBeenCalledWith(1);
+      expect(mockStatus).toHaveBeenCalledWith(404);
+      expect(mockJson).toHaveBeenCalledWith({ error: 'Bin not found' });
+    });
+  });
 });
