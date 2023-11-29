@@ -161,4 +161,37 @@ describe('user controller', () => {
       expect(mockSend).toHaveBeenCalledWith({ success: true });
     });
   });
+
+  describe('show', () => {
+    it('returns a user successfully', async () => {
+      const testUser = {
+        id: 1,
+        username: 'testuser',
+        // other user properties
+      };
+      const mockReq = { params: { id: '1' } };
+
+      jest.spyOn(User, 'getUsernameById').mockResolvedValue(testUser);
+
+      await userController.show(mockReq, mockRes);
+
+      expect(User.getUsernameById).toHaveBeenCalledWith(1);
+      expect(mockStatus).toHaveBeenCalledWith(200);
+      expect(mockJson).toHaveBeenCalledWith(testUser);
+    });
+
+    it('handles show error', async () => {
+      const mockReq = { params: { id: '1' } };
+
+      jest
+        .spyOn(User, 'getUsernameById')
+        .mockRejectedValue(new Error('User not found'));
+
+      await userController.show(mockReq, mockRes);
+
+      expect(User.getUsernameById).toHaveBeenCalledWith(1);
+      expect(mockStatus).toHaveBeenCalledWith(404);
+      expect(mockJson).toHaveBeenCalledWith({ error: 'User not found' });
+    });
+  });
 });
