@@ -8,6 +8,20 @@ class User {
     this.isAdmin = is_admin;
   }
 
+  static getAll() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const usersData = await db.query('SELECT * FROM users');
+        const users = usersData.rows.map(
+          (user) => new User(user)
+        );
+        resolve(users);
+      } catch (error) {
+        reject('error retrieving users');
+      }
+    });
+  }
+
   static async getOneById(id) {
     const response = await db.query('SELECT * FROM users WHERE user_id = $1', [
       id
