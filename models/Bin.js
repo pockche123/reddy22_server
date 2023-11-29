@@ -20,6 +20,16 @@ class Bin {
       }
     });
   }
+
+  static async findById(id) {
+    const result = await db.query('SELECT * FROM bins WHERE bin_id = $1', [id]);
+
+    if (!result.rows.length) {
+      throw new Error('Unable to locate bin.');
+    }
+
+    return new Bin(result.rows[0]);
+  }
 }
 
 module.exports = Bin;
