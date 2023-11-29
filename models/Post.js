@@ -35,21 +35,31 @@ class Post {
     const response = await db.query('SELECT * FROM posts WHERE post_id = $1', [
       id
     ]);
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error('Unable to locate post.');
     }
     return new Post(response.rows[0]);
   }
 
   static async create(data) {
-    const { title, content, user_id } = data;
+    const { title, content, user_id, isCommunity, enrolls } = data;
     let response = await db.query(
-      'INSERT INTO posts (title, content, user_id) VALUES ($1, $2, $3) RETURNING post_id;',
-      [title, content, user_id]
+      'INSERT INTO posts (title, content, user_id, isCommunity, enrolls) VALUES ($1, $2, $3, $4, $5) RETURNING post_id;',
+      [title, content, user_id, isCommunity, enrolls]
     );
     const newId = response.rows[0].post_id;
     const newPost = await Post.getOneById(newId);
     return newPost;
+  }
+
+  async updateCommunity(data) {
+    let response = await db.query(
+      'UPDATE posts SET enrolls = $1 WHERE id = $2 RETURNING id, enrolls;',
+      [this.enrolls + parseInt(data.enrolls), this.id]
+    );
+    if (response.rows.length !== 1)
+      throw new Error('Unable to update enrolls.');
+    return new Snack(response.rows[0]);
   }
 
   async destroy() {
