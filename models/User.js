@@ -13,7 +13,7 @@ class User {
       try {
         const usersData = await db.query('SELECT * FROM users');
         const users = usersData.rows.map(
-          (material) => new User(material)
+          (user) => new User(user)
         );
         resolve(users);
       } catch (error) {

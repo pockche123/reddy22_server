@@ -106,12 +106,12 @@ describe('User', () => {
             const newUser = {
                 rows: [
                     {
-                        user_id: 1,
+                        // user_id: 1,
                         username: "AlexTest3",
-                        password: "jkl",
-                        address: "The World",
-                        is_admin: true,
-                        isCouncilMember: false
+                        password: "jkl"
+                        // address: "The World",
+                        // is_admin: true,
+                        // isCouncilMember: false
                     }
                 ]
         };
