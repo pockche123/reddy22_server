@@ -1,16 +1,33 @@
 const db = require('../database/connect');
 
 class Post {
-  constructor({ post_id, user_id, title, content, date }) {
+  constructor({
+    post_id,
+    user_id,
+    title,
+    content,
+    date,
+    isCommunity,
+    enrolls
+  }) {
     this.id = post_id;
     this.user_id = user_id;
     this.title = title;
     this.content = content;
     this.date = date;
+    this.isCommunity = isCommunity;
+    this.enrolls = enrolls;
   }
 
   static async getAll() {
     const response = await db.query('SELECT * FROM posts ORDER BY date DESC');
+    return response.rows.map((p) => new Post(p));
+  }
+
+  static async getAllCommunity() {
+    const response = await db.query(
+      'SELECT * FROM posts WHERE isCommunity IS TRUE'
+    );
     return response.rows.map((p) => new Post(p));
   }
 
