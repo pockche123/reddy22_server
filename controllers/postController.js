@@ -52,6 +52,8 @@ const destroy = async (req, res) => {
 
     const post = await Post.getOneById(id);
 
+    console.log('admin?', user.isAdmin);
+
     if (post.user_id === user.id || user.isAdmin) {
       const result = await post.destroy();
       res.status(204).end();
