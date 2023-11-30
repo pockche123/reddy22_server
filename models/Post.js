@@ -26,7 +26,7 @@ class Post {
 
   static async getAllCommunity() {
     const response = await db.query(
-      'SELECT * FROM posts WHERE isCommunity IS TRUE'
+      'SELECT * FROM posts WHERE isCommunity IS TRUE ORDER BY date DESC'
     );
     return response.rows.map((p) => new Post(p));
   }
@@ -65,7 +65,7 @@ class Post {
 
   async updateCommunity(data) {
     let response = await db.query(
-      'UPDATE posts SET enrolls = $1 WHERE id = $2 RETURNING id, enrolls;',
+      'UPDATE posts SET enrolls = $1 WHERE post_id = $2 RETURNING post_id, enrolls;',
       [this.enrolls + parseInt(data.enrolls), this.id]
     );
     if (response.rows.length !== 1)
