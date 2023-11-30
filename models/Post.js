@@ -70,7 +70,7 @@ class Post {
     );
     if (response.rows.length !== 1)
       throw new Error('Unable to update enrolls.');
-    return new Snack(response.rows[0]);
+    return new Post(response.rows[0]);
   }
 
   async destroy() {
