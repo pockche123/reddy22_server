@@ -49,6 +49,34 @@ describe('post controller', () => {
     });
   });
 
+  describe('index community', () => {
+    test('should return community Posts with a status code 200', async () => {
+      const testPosts = ['Post1', 'Post2'];
+
+      jest.spyOn(Post, 'getAllCommunity').mockResolvedValue(testPosts);
+
+      await postController.indexCommunity(null, mockRes);
+
+      expect(Post.getAllCommunity).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(200);
+      expect(mockJson).toHaveBeenCalledWith(testPosts);
+      expect(mockEnd).not.toHaveBeenCalled();
+    });
+
+    test('should send an error when failing to return community Posts', async () => {
+      jest
+        .spyOn(Post, 'getAllCommunity')
+        .mockRejectedValue(new Error('Something happened to your db'));
+
+      await postController.indexCommunity(null, mockRes);
+      expect(Post.getAllCommunity).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(500);
+      expect(mockJson).toHaveBeenCalledWith({
+        error: 'Something happened to your db'
+      });
+    });
+  });
+
   describe('create', () => {
     test('should return created Post with a status 201', async () => {
       // Mock request data
@@ -122,11 +150,147 @@ describe('post controller', () => {
     });
   });
 
+  describe('create community', () => {
+    test('should return created community Post with a status 201', async () => {
+      // Mock request data
+      const testPost = {
+        title: 'a post',
+        content: 'content',
+        isCommunity: true
+      };
+
+      const mockUser = {
+        user_id: 2,
+        username: 'testuser',
+        password: 'plainPassword',
+        isCouncilMember: true
+      };
+
+      const mockPost = {
+        post_id: 1,
+        title: 'a post',
+        content: 'content',
+        user_id: 2,
+        isCommunity: true
+      };
+
+      const mockToken = {
+        token_id: 1,
+        token: 'mockedToken',
+        user_id: 2
+      };
+
+      const mockReq = {
+        headers: { authorization: 'mockedToken' },
+        body: testPost
+      };
+      jest.spyOn(Token, 'getOneByToken').mockResolvedValue(mockToken);
+      jest.spyOn(User, 'getOneById').mockResolvedValue(mockUser);
+
+      jest.spyOn(Post, 'createCommunity').mockResolvedValue(mockPost);
+
+      await postController.createCommunity(mockReq, mockRes);
+
+      expect(Token.getOneByToken).toHaveBeenCalledWith('mockedToken');
+      expect(User.getOneById).toHaveBeenCalledWith(mockUser.user_id);
+      expect(Post.createCommunity).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(201);
+      expect(mockSend).toHaveBeenCalledWith(mockPost);
+    });
+
+    test('should send an error with a status 403 if not a council member', async () => {
+      // Mock request data
+      const testPost = {
+        title: 'a post',
+        content: 'content',
+        isCommunity: true
+      };
+
+      const mockUser = {
+        user_id: 2,
+        username: 'testuser',
+        password: 'plainPassword',
+        isCouncilMember: false
+      };
+
+      const mockToken = {
+        token_id: 1,
+        token: 'mockedToken',
+        user_id: 2
+      };
+
+      const mockReq = {
+        headers: { authorization: 'mockedToken' },
+        body: testPost
+      };
+      jest.spyOn(Token, 'getOneByToken').mockResolvedValue(mockToken);
+      jest.spyOn(User, 'getOneById').mockResolvedValue(mockUser);
+
+      jest
+        .spyOn(Post, 'createCommunity')
+        .mockRejectedValue(
+          new Error('You must be a council member to create community posts!')
+        );
+
+      await postController.createCommunity(mockReq, mockRes);
+
+      expect(Token.getOneByToken).toHaveBeenCalledWith('mockedToken');
+      expect(User.getOneById).toHaveBeenCalledWith(mockUser.user_id);
+      expect(mockStatus).toHaveBeenCalledWith(403);
+      expect(mockJson).toHaveBeenCalledWith({
+        error: 'You must be a council member to create community posts!'
+      });
+    });
+
+    test('should send an error when failing to create a commmunity Post', async () => {
+      // Mock request data
+      const testPost = {
+        a: 'a post',
+        b: 'content'
+      };
+
+      const mockUser = {
+        user_id: 2,
+        username: 'testuser',
+        password: 'plainPassword',
+        isCouncilMember: true
+      };
+
+      const mockToken = {
+        token_id: 1,
+        token: 'mockedToken',
+        user_id: 2
+      };
+
+      const mockReq = {
+        headers: { authorization: 'mockedToken' },
+        body: testPost
+      };
+      jest.spyOn(Token, 'getOneByToken').mockResolvedValue(mockToken);
+      jest.spyOn(User, 'getOneById').mockResolvedValue(mockUser);
+      jest
+        .spyOn(Post, 'createCommunity')
+        .mockRejectedValue(new Error('Post could not be created'));
+
+      // Call the index function with the mocked req and res
+      await postController.createCommunity(mockReq, mockRes);
+
+      // Assertions
+      expect(Token.getOneByToken).toHaveBeenCalledWith('mockedToken');
+      expect(User.getOneById).toHaveBeenCalledWith(mockUser.user_id);
+      expect(Post.createCommunity).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(400);
+      expect(mockJson).toHaveBeenCalledWith({
+        error: 'Post could not be created'
+      });
+    });
+  });
+
   describe('show', () => {
     let testPost, mockReq;
     beforeEach(() => {
       testPost = {
-        post_id: 1,
+        id: 1,
         title: 'a post',
         content: 'content',
         user_id: 2
@@ -142,7 +306,7 @@ describe('post controller', () => {
       expect(Post.getOneById).toHaveBeenCalledWith(1);
       expect(Post.getOneById).toHaveBeenCalledTimes(1);
       expect(mockStatus).toHaveBeenCalledWith(200);
-      expect(mockJson).toHaveBeenCalledWith(testPost);
+      expect(mockJson).toHaveBeenCalledWith(new Post(testPost));
     });
 
     test('sends an error upon fail', async () => {
@@ -151,6 +315,70 @@ describe('post controller', () => {
         .mockRejectedValue(new Error('Post not found'));
 
       await postController.show(mockReq, mockRes);
+      expect(Post.getOneById).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(404);
+      expect(mockJson).toHaveBeenCalledWith({
+        error: 'Post not found'
+      });
+    });
+  });
+
+  describe('update community', () => {
+    test('should return updated community Post with a status 200', async () => {
+      // Mock request data
+      const testData = {
+        enrolls: 1
+      };
+
+      const testPost = {
+        id: 1,
+        title: 'a post',
+        content: 'content',
+        user_id: 2,
+        isCommunity: true,
+        enrolls: 0
+      };
+
+      const mockPost = {
+        post_id: 1,
+        title: 'a post',
+        content: 'content',
+        user_id: 2,
+        isCommunity: true,
+        enrolls: 1
+      };
+
+      const mockReq = {
+        params: { id: 1 },
+        body: testData
+      };
+
+      jest.spyOn(Post, 'getOneById').mockResolvedValue(new Post(testPost));
+      jest.spyOn(Post.prototype, 'updateCommunity').mockResolvedValue(mockPost);
+
+      await postController.updateCommunity(mockReq, mockRes);
+
+      expect(Post.getOneById).toHaveBeenCalledWith(mockReq.params.id);
+      expect(Post.prototype.updateCommunity).toHaveBeenCalledTimes(1);
+      expect(mockStatus).toHaveBeenCalledWith(200);
+    });
+
+    test('sends an error with a status 404 upon fail', async () => {
+      // Mock request data
+      const testData = {
+        enrolls: 1
+      };
+
+      const mockReq = {
+        params: { id: 1 },
+        body: testData
+      };
+
+      jest
+        .spyOn(Post, 'getOneById')
+        .mockRejectedValue(new Error('Post not found'));
+
+      await postController.updateCommunity(mockReq, mockRes);
       expect(Post.getOneById).toHaveBeenCalledTimes(1);
       expect(mockStatus).toHaveBeenCalledWith(404);
       expect(mockJson).toHaveBeenCalledWith({

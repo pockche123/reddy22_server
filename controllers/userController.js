@@ -52,15 +52,11 @@ const show = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  console.log('inside logout');
   try {
     const userToken = req.headers['authorization'];
-    console.log('user token', userToken);
     const token = await Token.getOneByToken(userToken);
-    console.log('token', token);
 
     const result = await token.destroy();
-    console.log('result', result);
     res.status(200).send(result);
   } catch (e) {
     res.status(400).json({ error: e.message });
