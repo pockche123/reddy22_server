@@ -52,6 +52,17 @@ class Post {
     return newPost;
   }
 
+  static async createCommunity(data) {
+    const { title, content, user_id, iscommunity = true, enrolls } = data;
+    let response = await db.query(
+      'INSERT INTO posts (title, content, user_id, isCommunity, enrolls) VALUES ($1, $2, $3, $4, $5) RETURNING post_id;',
+      [title, content, user_id, iscommunity, enrolls]
+    );
+    const newId = response.rows[0].post_id;
+    const newPost = await Post.getOneById(newId);
+    return newPost;
+  }
+
   async updateCommunity(data) {
     let response = await db.query(
       'UPDATE posts SET enrolls = $1 WHERE id = $2 RETURNING id, enrolls;',

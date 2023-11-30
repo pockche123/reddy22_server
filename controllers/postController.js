@@ -33,6 +33,30 @@ const create = async (req, res) => {
   }
 };
 
+const createCommunity = async (req, res) => {
+  try {
+    const data = req.body;
+    const userToken = req.headers['authorization'];
+    const token = await Token.getOneByToken(userToken);
+
+    const user = await User.getOneById(token.user_id);
+
+    if (user.isCouncilMember) {
+      const result = await Post.createCommunity({
+        ...data,
+        user_id: token.user_id
+      });
+      res.status(201).send(result);
+    } else {
+      res.status(403).json({
+        error: 'You must be a council member to create community posts!'
+      });
+    }
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+};
+
 const show = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -80,6 +104,7 @@ module.exports = {
   index,
   indexCommunity,
   create,
+  createCommunity,
   show,
   updateCommunity,
   destroy
