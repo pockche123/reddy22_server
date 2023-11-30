@@ -15,8 +15,9 @@ api.use(logger('dev'));
 
 api.get('/', (req, res) => {
   res.status(200).json({
-    name: 'reddy_22 API',
-    description: 'TBC',
+    name: 'Floro API',
+    description:
+      "Interact with the 'Learn', 'Forums' and 'Events' sections through the routes below.",
     endpoints: [
       'GET  /posts',
       'GET  /posts/community',
