@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1701275677682" clover="3.2.0">
-  <project timestamp="1701275677682" name="All files">
-    <metrics statements="254" coveredstatements="242" conditionals="32" coveredconditionals="27" methods="54" coveredmethods="51" elements="340" coveredelements="320" complexity="0" loc="254" ncloc="254" packages="3" files="10" classes="10"/>
+<coverage generated="1701361796547" clover="3.2.0">
+  <project timestamp="1701361796547" name="All files">
+    <metrics statements="277" coveredstatements="260" conditionals="37" coveredconditionals="29" methods="58" coveredmethods="54" elements="372" coveredelements="343" complexity="0" loc="277" ncloc="277" packages="3" files="10" classes="10"/>
     <package name="controllers">
-      <metrics statements="127" coveredstatements="119" conditionals="14" coveredconditionals="9" methods="18" coveredmethods="17"/>
+      <metrics statements="141" coveredstatements="137" conditionals="16" coveredconditionals="11" methods="20" coveredmethods="20"/>
       <file name="binController.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/controllers/binController.js">
         <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -56,7 +56,7 @@
         <line num="62" count="2" type="cond" truecount="1" falsecount="1"/>
       </file>
       <file name="postController.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/controllers/postController.js">
-        <metrics statements="40" coveredstatements="36" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="4"/>
+        <metrics statements="58" coveredstatements="58" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -66,10 +66,10 @@
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
         <line num="25" count="2" type="stmt"/>
@@ -79,27 +79,45 @@
         <line num="30" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="3" type="stmt"/>
-        <line num="48" count="3" type="stmt"/>
-        <line num="49" count="3" type="stmt"/>
-        <line num="50" count="3" type="stmt"/>
-        <line num="51" count="3" type="stmt"/>
-        <line num="53" count="3" type="stmt"/>
-        <line num="55" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="3" type="stmt"/>
+        <line num="83" count="3" type="stmt"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="87" count="3" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="90" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
       </file>
       <file name="userController.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/controllers/userController.js">
-        <metrics statements="42" coveredstatements="40" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <metrics statements="38" coveredstatements="36" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -133,15 +151,11 @@
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
         <line num="60" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="82" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
       </file>
     </package>
     <package name="database">
@@ -157,7 +171,7 @@
       </file>
     </package>
     <package name="models">
-      <metrics statements="121" coveredstatements="117" conditionals="16" coveredconditionals="16" methods="35" coveredmethods="33"/>
+      <metrics statements="130" coveredstatements="117" conditionals="19" coveredconditionals="16" methods="37" coveredmethods="33"/>
       <file name="Bin.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/models/Bin.js">
         <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
         <line num="1" count="2" type="stmt"/>
@@ -211,15 +225,15 @@
         <line num="71" count="2" type="stmt"/>
       </file>
       <file name="Post.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/models/Post.js">
-        <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="6"/>
+        <metrics statements="33" coveredstatements="22" conditionals="5" coveredconditionals="2" methods="10" coveredmethods="6"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="13" count="11" type="stmt"/>
-        <line num="14" count="11" type="stmt"/>
-        <line num="15" count="11" type="stmt"/>
-        <line num="16" count="11" type="stmt"/>
-        <line num="17" count="11" type="stmt"/>
-        <line num="18" count="11" type="stmt"/>
-        <line num="19" count="11" type="stmt"/>
+        <line num="13" count="13" type="stmt"/>
+        <line num="14" count="13" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="16" count="13" type="stmt"/>
+        <line num="17" count="13" type="stmt"/>
+        <line num="18" count="13" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
@@ -233,9 +247,18 @@
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
       </file>
       <file name="Token.js" path="/Users/nine96/Development/lfa/lap-2/project/reddy22_server/models/Token.js">
         <metrics statements="21" coveredstatements="21" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
