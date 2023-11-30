@@ -25,7 +25,7 @@ class User {
     const response = await db.query('SELECT * FROM users WHERE user_id = $1', [
       id
     ]);
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error('Unable to locate user.');
     }
     return new User(response.rows[0]);
@@ -36,7 +36,7 @@ class User {
       'SELECT username FROM users WHERE user_id = $1',
       [id]
     );
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error('Unable to locate user.');
     }
     return new User(response.rows[0]);
@@ -46,7 +46,7 @@ class User {
     const response = await db.query('SELECT * FROM users WHERE username = $1', [
       username
     ]);
-    if (response.rows.length != 1) {
+    if (response.rows.length !== 1) {
       throw new Error('Unable to locate user.');
     }
     return new User(response.rows[0]);
