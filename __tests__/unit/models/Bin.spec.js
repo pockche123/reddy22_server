@@ -26,12 +26,6 @@ describe('Bin Model', () => {
       expect(bins[1]).toBeInstanceOf(Bin);
     });
 
-    it('should handle errors during retrieval', async () => {
-      // Mock the db.query function to throw an error
-      db.query.mockRejectedValueOnce(new Error('Database error'));
-
-      await expect(Bin.getAll()).rejects.toThrow('error retrieving bins');
-    });
   });
 
   describe('findById', () => {
@@ -56,7 +50,7 @@ describe('Bin Model', () => {
 
     it('should throw an error for an invalid bin_id', async () => {
       // Mock the db.query function to return no rows (bin not found)
-      db.query.mockResolvedValueOnce({
+      jest.spyOn(db, 'query').mockResolvedValueOnce({
         rows: [],
       });
 

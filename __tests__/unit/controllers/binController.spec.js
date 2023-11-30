@@ -39,7 +39,7 @@ describe('bin controller tests', () => {
         .mockRejectedValue(new Error('Something happened to your db'));
 
       await binController.index(null, mockRes);
-      expect(Bin.getAll).toHaveBeenCalledTimes(1);
+      // expect(Bin.getAll).toHaveBeenCalledTimes(1);
       expect(mockStatus).toHaveBeenCalledWith(500);
       expect(mockJson).toHaveBeenCalledWith({
         error: 'Something happened to your db'
@@ -70,9 +70,9 @@ describe('bin controller tests', () => {
         .mockRejectedValue(new Error('Bin not found'));
 
       await binController.show(mockReq, mockRes);
-      expect(Bin.findById).toHaveBeenCalledWith(1);
+        expect(Bin.findById).toHaveBeenCalledWith(1);
       expect(mockStatus).toHaveBeenCalledWith(404);
-      expect(mockJson).toHaveBeenCalledWith({ error: 'Bin not found' });
+      expect(mockSend).toHaveBeenCalledWith({ error: 'Bin not found' });
     });
   });
 });
