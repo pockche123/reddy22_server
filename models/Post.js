@@ -7,7 +7,7 @@ class Post {
     title,
     content,
     date,
-    isCommunity,
+    iscommunity,
     enrolls
   }) {
     this.id = post_id;
@@ -15,7 +15,7 @@ class Post {
     this.title = title;
     this.content = content;
     this.date = date;
-    this.isCommunity = isCommunity;
+    this.isCommunity = iscommunity;
     this.enrolls = enrolls;
   }
 
@@ -42,10 +42,10 @@ class Post {
   }
 
   static async create(data) {
-    const { title, content, user_id, isCommunity, enrolls } = data;
+    const { title, content, user_id, iscommunity, enrolls } = data;
     let response = await db.query(
       'INSERT INTO posts (title, content, user_id, isCommunity, enrolls) VALUES ($1, $2, $3, $4, $5) RETURNING post_id;',
-      [title, content, user_id, isCommunity, enrolls]
+      [title, content, user_id, iscommunity, enrolls]
     );
     const newId = response.rows[0].post_id;
     const newPost = await Post.getOneById(newId);
