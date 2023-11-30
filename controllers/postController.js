@@ -59,11 +59,9 @@ const destroy = async (req, res) => {
     const id = parseInt(req.params.id);
     const userToken = req.headers['authorization'];
     const token = await Token.getOneByToken(userToken);
+
     const user = await User.getOneById(token.user_id);
-
     const post = await Post.getOneById(id);
-
-    console.log('admin?', user.isAdmin);
 
     if (post.user_id === user.id || user.isAdmin) {
       const result = await post.destroy();
