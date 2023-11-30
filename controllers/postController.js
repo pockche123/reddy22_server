@@ -11,6 +11,15 @@ const index = async (req, res) => {
   }
 };
 
+const indexCommunity = async (req, res) => {
+  try {
+    const posts = await Post.getAllCommunity();
+    res.status(200).json(posts);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
 const create = async (req, res) => {
   try {
     const data = req.body;
@@ -19,6 +28,30 @@ const create = async (req, res) => {
 
     const result = await Post.create({ ...data, user_id: token.user_id });
     res.status(201).send(result);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+};
+
+const createCommunity = async (req, res) => {
+  try {
+    const data = req.body;
+    const userToken = req.headers['authorization'];
+    const token = await Token.getOneByToken(userToken);
+
+    const user = await User.getOneById(token.user_id);
+
+    if (user.isCouncilMember) {
+      const result = await Post.createCommunity({
+        ...data,
+        user_id: token.user_id
+      });
+      res.status(201).send(result);
+    } else {
+      res.status(403).json({
+        error: 'You must be a council member to create community posts!'
+      });
+    }
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -34,13 +67,24 @@ const show = async (req, res) => {
   }
 };
 
+const updateCommunity = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.getOneById(parseInt(id));
+    const result = await post.updateCommunity(req.body);
+    res.status(200).json(result);
+  } catch (e) {
+    res.status(404).json({ error: e.message });
+  }
+};
+
 const destroy = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const userToken = req.headers['authorization'];
     const token = await Token.getOneByToken(userToken);
-    const user = await User.getOneById(token.user_id);
 
+    const user = await User.getOneById(token.user_id);
     const post = await Post.getOneById(id);
 
     if (post.user_id === user.id || user.isAdmin) {
@@ -58,7 +102,10 @@ const destroy = async (req, res) => {
 
 module.exports = {
   index,
+  indexCommunity,
   create,
+  createCommunity,
   show,
+  updateCommunity,
   destroy
 };

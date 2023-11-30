@@ -1,45 +1,66 @@
 const Bin = require('../../../models/Bin')
 const db = require('../../../database/connect')
 
-let mockData
+jest.mock('../../../database/connect');
 
-describe('Bin', () => {
-    beforeEach(() => {
-        jest.clearAllMocks()
-        mockData = {
-            rows: [
-                {
-                    id: 1,
-                    bin_type: 'Recycling Collection',
-                    color: 'Blue',
-                    bin_image: 'https://example.com/blue-bin-image.jpg',
-                    info: 'Your 240-litre recycling bin will be collected every fortnight – check the collection calendar for your collection day.'
-                },
-                {
-                    id: 2,
-                    bin_type: 'Refuse Collection',
-                    color: 'Grey',
-                    bin_image: 'https://example.com/grey-bin-image.jpg',
-                    info: 'The grey bin is collected every three weeks. Please use your grey bin for household items that cannot be recycled. All rubbish must be contained in the grey bin with the lid firmly closed. Bags of rubbish left anywhere around the bin will not be collected. Any extra rubbish can be taken to a Household Waste Recycling Centre.'
-                }
-            ]
-        }
-    })
-    afterAll(() => jest.resetAllMocks()); 
+describe('Bin Model', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-    it('is defined', () => {
-        expect(Bin).toBeDefined()
-    })
+  describe('getAll', () => {
+    it('should return an array of bins', async () => {
+      // Mock the db.query function to return sample data
+      const mockBinsData = {
+        rows: [
+          { bin_id: 1, bin_type: 'Recycling', color: 'Blue', bin_image: 'recycling.png', info: 'Recycling bin' },
+          { bin_id: 2, bin_type: 'Trash', color: 'Gray', bin_image: 'trash.png', info: 'Trash bin' },
+        ],
+      };
 
-       describe("getAll", () => {
-        it("resolves with bins on successful", async () => {
-            //act
-            jest.spyOn(db, "query").mockResolvedValueOnce(mockData);
-            const bins = await Bin.getAll();
-            //assert
-            expect(bins).toHaveLength(2);
-            //verify
-            expect(bins[0]).toHaveProperty("bin_image");
-        });
+      db.query.mockResolvedValueOnce(mockBinsData);
+
+      const bins = await Bin.getAll();
+      expect(bins).toHaveLength(2);
+      expect(bins[0]).toBeInstanceOf(Bin);
+      expect(bins[1]).toBeInstanceOf(Bin);
     });
-})
+
+    it('should handle errors during retrieval', async () => {
+      // Mock the db.query function to throw an error
+      db.query.mockRejectedValueOnce(new Error('Database error'));
+
+      await expect(Bin.getAll()).rejects.toThrow('error retrieving bins');
+    });
+  });
+
+  describe('findById', () => {
+    it('should return a bin for a specified bin_id', async () => {
+      const expectedBin = new Bin({
+        bin_id: 1,
+        bin_type: 'Recycling',
+        color: 'Blue',
+        bin_image: 'recycling.png',
+        info: 'Recycling bin',
+      });
+
+      // Mock the db.query function to return sample data
+      db.query.mockResolvedValueOnce({
+        rows: [expectedBin],
+      });
+
+      const bin = await Bin.findById(1);
+      expect(bin).toBeInstanceOf(Bin);
+      expect(bin).toEqual(expectedBin);
+    });
+
+    it('should throw an error for an invalid bin_id', async () => {
+      // Mock the db.query function to return no rows (bin not found)
+      db.query.mockResolvedValueOnce({
+        rows: [],
+      });
+
+      await expect(Bin.findById(999)).rejects.toThrow('Unable to locate bin.');
+    });
+  });
+});

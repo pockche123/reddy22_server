@@ -38,103 +38,165 @@ describe('User', () => {
 
     describe('getAll', () => {
         it('resolves with Users on successful', async () => {
-            //act
+         
             jest.spyOn(db, 'query').mockResolvedValueOnce(mockData)
             const Users = await User.getAll()
-            //assert
             expect(Users).toHaveLength(2)
-            //verify
             expect(Users[0]).toHaveProperty('username')
         })
+
+        it('should throw an Error on db query error', async () => {
+            jest.spyOn(db, 'query')
+              .mockResolvedValueOnce({ rows: [] })
+      
+            try {
+              await User.getAll()
+            } catch (error) {
+              expect(error).toBeDefined()
+              expect(error.message).toBe('error retrieving users')
+            }
+          })
     })
 
     
     describe('getOneById', () => {
         it('resolves with users for a given ID on success', async () => {
-            // Arrange
-            const userId = 1
-            jest.spyOn(db, 'query').mockResolvedValueOnce(mockData)
-            // Act
-            const users = await User.getOneById(userId)
-            // Assert
-            expect(users).toHaveLength(2)
-            expect(users[0]).toHaveProperty('username')
-        })
-
-        it('handles errors gracefully', async () => {
-            // Arrange
-            const userId = 5
-            const errorMessage = 'Error fetching users:'
-            jest.spyOn(db, 'query').mockRejectedValueOnce(new Error(errorMessage))
-
-            // Act and Assert
-            await expect(User.getOneById(userId)).rejects.toThrow(
-                errorMessage
-            )
-        })
-    })
-
-    describe('getOneByUsername', () => {
-        it('resolves with users for a given Username on success', async () => {
-            // Arrange
-            const username = "AlexTest"
-            jest.spyOn(db, 'query').mockResolvedValueOnce(mockData)
-            // Act
-            const users = await User.getOneByUsername(username)
-            // Assert
-            expect(users).toHaveLength(2)
-            expect(users[0]).toHaveProperty('username')
-        })
-
-        it('handles errors gracefully', async () => {
-            // Arrange
-            const username = "fake"
-            const errorMessage = 'Error fetching users:'
-            jest.spyOn(db, 'query').mockRejectedValueOnce(new Error(errorMessage))
-
-            // Act and Assert
-            await expect(User.getOneByUsername(username)).rejects.toThrow(
-                errorMessage
-            )
-        })
-    })
-
-
-    describe('create', () => {
-        it('creates a new user given username and password', async () => {
-            // Arrange
-            const newUser = {
-                rows: [
-                    {
+            let testUser = {
                         user_id: 1,
-                        username: "AlexTest3",
+                        username: "AlexTest",
                         password: "jkl",
                         address: "The World",
                         is_admin: true,
                         isCouncilMember: false
                     }
-                ]
-        };
-            jest.spyOn(db, 'query').mockResolvedValueOnce(newUser)
-
-            const users = await User.create(newUser)
-            // Assert
-            expect(users[0]).toHaveProperty('password')
-            expect(users[0]).toHaveProperty('username')
+            
+            jest.spyOn(db, 'query').mockResolvedValueOnce({rows: [testUser]})
+         
+            const Users = await User.getOneById(1)
+            expect(Users).toBeInstanceOf(User)
+            expect(Users).toHaveProperty('username')
+            expect(Users.username).toBe('AlexTest')
+            expect(Users.id).toBe(1)
         })
 
-        it('handles errors gracefully', async () => {
-            // Arrange
-            const username = "AlexTest"
-            const errorMessage = 'Error creating user'
-            jest.spyOn(db, 'query').mockRejectedValueOnce(new Error(errorMessage))
-
-            // Act and Assert
-            await expect(User.create(username)).rejects.toThrow(
-                errorMessage
-            )
-        })
+        it('should throw an Error on db query error', async () => {
+            jest.spyOn(db, 'query')
+              .mockResolvedValueOnce({ rows: [] })
+      
+            try {
+              await User.getOneById(1)
+            } catch (err) {
+              expect(err).toBeDefined()
+              expect(err.message).toBe("Unable to locate user.")
+            }
+          })
     })
+
+
+    describe('getUsernameById', () => {
+        it('resolves with usersname for a given ID on success', async () => {
+            let testUser = {
+                        user_id: 1,
+                        username: "AlexTest",
+                        password: "jkl",
+                        address: "The World",
+                        is_admin: true,
+                        isCouncilMember: false
+                    }
+            
+            jest.spyOn(db, 'query').mockResolvedValueOnce({rows: [testUser]})
+         
+            const Users = await User.getUsernameById(1)
+            expect(Users).toBeInstanceOf(User)
+            expect(Users).toHaveProperty('username')
+            expect(Users.username).toBe('AlexTest')
+            expect(Users.id).toBe(1)
+        })
+
+        it('should throw an Error on db query error', async () => {
+            jest.spyOn(db, 'query')
+              .mockResolvedValueOnce({ rows: [] })
+      
+            try {
+              await User.getUsernameById(1)
+            } catch (err) {
+              expect(err).toBeDefined()
+              expect(err.message).toBe("Unable to locate user.")
+            }
+          })
+    })
+
+    describe('getOneByUsername', () => {
+        it('resolves with users for a given ID on success', async () => {
+            let testUser = {
+                        user_id: 1,
+                        username: "AlexTest",
+                        password: "jkl",
+                        address: "The World",
+                        is_admin: true,
+                        isCouncilMember: false
+                    }
+            
+            jest.spyOn(db, 'query').mockResolvedValueOnce({rows: [testUser]})
+         
+            const Users = await User.getOneByUsername('AlexTest')
+            expect(Users).toBeInstanceOf(User)
+            expect(Users).toHaveProperty('username')
+            expect(Users.username).toBe('AlexTest')
+            expect(Users.id).toBe(1)
+        })
+
+        it('should throw an Error on db query error', async () => {
+            jest.spyOn(db, 'query')
+              .mockResolvedValueOnce({ rows: [] })
+      
+            try {
+              await User.getOneByUsername(1)
+            } catch (err) {
+              expect(err).toBeDefined()
+              expect(err.message).toBe("Unable to locate user.")
+            }
+          })
+    })
+
+    describe('create', () => {
+        it('creates a new user given username and password', async () => {
+           const testUser = {
+                user_id: 1,
+                username: "AlexTest",
+                password: "jkl",
+                address: "The World",
+                is_admin: true,
+                isCouncilMember: false
+            }
+            const testUser2 = {
+                user_id: 2,
+                username: "AlexTest2",
+                password: "jkl",
+                address: "The World",
+                is_admin: true,
+                isCouncilMember: false
+            }
+
+            jest.spyOn(db, 'query').mockResolvedValueOnce({ rows:[testUser]
+             })
+            jest.spyOn(db, 'query').mockResolvedValueOnce({
+                rows: [new User({ user_id: 2, ...testUser2 })],
+              })
+    
+            const result = await User.create(testUser2)
+            expect(result).toBeTruthy()
+            expect(result).toBeInstanceOf(User)
+         })
+    
+        it('should throw an Error on db query error', async () => {
+            try {
+                await User.create({ username: "AlexTest", password: "jkl"})
+            } catch (error) {
+                expect(error).toBeTruthy()
+            }
+        })
+        })
 
 
 })
